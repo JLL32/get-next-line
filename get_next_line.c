@@ -72,17 +72,13 @@ char	*ft_strchr(const char *string, int c)
 
 int		get_line(char **line, char **text, int ret)
 {
-	size_t	counter;
 	char	*temp;
 
 	if (*text != NULL)
 	{
 		if (ret > 0 || ft_strchr(*text, '\n'))
 		{
-			counter = 0;
-			while ((*text)[counter] != '\n' && (*text)[counter])
-				counter++;
-			*line = ft_substr(*text, 0, counter);
+			*line = ft_substr(*text, 0, ft_strchr(*text, '\n') - *text - 1);
 			temp = ft_strdup(*text + counter + 1);
 			free(*text);
 			*text = temp;
